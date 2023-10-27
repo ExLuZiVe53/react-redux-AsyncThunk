@@ -7,19 +7,12 @@ import {
   useLocation,
   useParams,
 } from 'react-router-dom';
-// import PostCommentsPage from './PostCommentsPage';
+
 import Loader from 'components/Loader';
 import ErrorMessage from 'components/ErrorMessage';
 
-import { findPostById } from 'services/api';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  addPost,
-  requestPostDetails,
-  setError,
-  setIsLoading,
-  setPostDetails,
-} from 'redux/postDetailReducer';
+import { requestPostDetails } from 'redux/postDetailReducer';
 
 const PostCommentsPage = lazy(() => import('pages/PostCommentsPage'));
 
@@ -28,6 +21,7 @@ const PostDetailsPage = () => {
   const location = useLocation();
   const backLinkHref = useRef(location.state?.from ?? '/');
 
+  // пілписка на дані зі стору
   const postDetails = useSelector(state => state.postDetails.postDetailsData);
   const isLoading = useSelector(state => state.postDetails.isLoading);
   const error = useSelector(state => state.postDetails.error);
@@ -46,9 +40,6 @@ const PostDetailsPage = () => {
   return (
     <div>
       <Link to={backLinkHref.current}>Go Back</Link>
-      <button onClick={() => dispatch(addPost({ title: '123', body: '123' }))}>
-        Click to add post to STATE
-      </button>
 
       {isLoading && <Loader />}
       {error && <ErrorMessage message={error} />}
