@@ -1,4 +1,29 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { findPostById } from 'services/api';
+
+// !=======================DAL(Data Accsess Layer)============================
+// створюємо асинхрону санку, яка приймає в собі два обов'язкові аргументи:
+// 1) Так званий префікс санки, тобто кожна Thunk має мати унікальний префікс
+// 2) Асинхрона колбек функція 'async () => {}', дана фунці приймає якісь дані (data) та thunkApi
+export const requestPostDetails = createAsyncThunk(
+  'postDetails/get',
+
+  async (postId, thunkApi) => {
+    try {
+      // setIsLoading(true);
+
+      const postData = await findPostById(postId);
+      // setPostDetails(postData);
+      return postData; // БУЛЕ ЗАПИСАНО В action.payload
+    } catch (error) {
+      // setError(error.message);
+      // після неуспішного запиту ми повернемо thunkApi та викличемо спецільний метод rejectWithValue і передамо об'єкт помилки
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);
+
+// !==========================End/ DAL========================
 
 // створюємо початковий стан state
 const INITIAL_STATE = {
@@ -34,6 +59,18 @@ const postDetailsSlice = createSlice({
       // state.posts.splice(deletedPostIndex, 1);
     },
   },
+  // thunk повертає спеціальні ред'юсери які отримують builder.addCase(назва thunk)
+  extraReducers: builder =>
+    builder
+      .addCase(requestPostDetails.pending, (state, action) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(requestPostDetails.fulfilled, (state, action) => {
+        state.isLoading = false;
+        // в Reducer дані потрапляють тільки через один спосіб action.payload
+        state.postDetailsData = action.payload;
+      }),
 });
 
 // Генератори екшенів
@@ -41,80 +78,3 @@ export const { setIsLoading, setPostDetails, setError, addPost, deletePost } =
   postDetailsSlice.actions;
 // Редюсер слайсу
 export const postDetailsReducer = postDetailsSlice.reducer;
-
-// // Ред'юсер це функція яка приймає state, action
-
-// export const postDetailsReducer = (state = INITIAL_STATE, action) => {
-
-//   // action-> {type: 'postDetails/setIsLoading', payload: true}
-//   // перевіряємо тип інструкції яка прийшла в наш ред'юсер
-
-//   switch (action.type) {
-//     case 'postDetails/setIsLoading': {
-//       return {
-//         ...state,
-
-//         // єдиний спосіб коли значення прийдуть це тільки action.payload
-
-//         isLoading: action.payload,
-//       };
-//     }
-
-//     case 'postDetails/setPostDetails': {
-//       return {
-//         ...state,
-//         postDetailsData: action.payload,
-//       };
-//     }
-
-//     case 'postDetails/setError': {
-//       return {
-//         ...state,
-//         error: action.payload,
-//       };
-//     }
-
-//     case 'postDetails/addPost': {
-
-//       // action.payload - {id: 1, title: '123', body: "hello"}
-//       return {
-//         ...state,
-//         posts: [...state.posts, action.payload],
-//       };
-//     }
-//     case 'postDetails/deletePost': {
-
-//       // action.payload -1
-//       return {
-//         ...state,
-//         posts: state.posts.filter(post => post.id !== action.payload),
-//       };
-//     }
-
-//     default:
-//       return state;
-//   }
-// };
-
-// // Створюємо екшенкріейтори, тобто логіку виносимо в ред'юсер
-
-// export const setIsLoading = payload => {
-//   return {
-//     type: 'postDetails/setIsLoading',
-//     payload,
-//   };
-// };
-
-// export const setPostDetails = payload => {
-//   return {
-//     type: 'postDetails/setPostDetails',
-//     payload,
-//   };
-// };
-
-// export const setError = payload => {
-//   return {
-//     type: 'postDetails/setError',
-//     payload,
-//   };
-// };

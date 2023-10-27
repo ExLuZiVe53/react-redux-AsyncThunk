@@ -15,6 +15,7 @@ import { findPostById } from 'services/api';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   addPost,
+  requestPostDetails,
   setError,
   setIsLoading,
   setPostDetails,
@@ -36,25 +37,10 @@ const PostDetailsPage = () => {
   // const [error, setError] = useState(null);
 
   useEffect(() => {
+    // коли у нас не прийде id поста, ми його просто відхиляємо, виходом з функції
     if (!postId) return;
-
-    const fetchAllPosts = async () => {
-      try {
-        // setIsLoading(true);
-        dispatch(setIsLoading(true));
-        const postData = await findPostById(postId);
-        // setPostDetails(postData);
-        dispatch(setPostDetails(postData));
-      } catch (error) {
-        // setError(error.message);
-        dispatch(setError(error.message));
-      } finally {
-        // setIsLoading(false);
-        dispatch(setIsLoading(false));
-      }
-    };
-
-    fetchAllPosts();
+    // thunk можна діспатчити, і дані які будуть у неї передані, прийдуть першим аргументои у async
+    dispatch(requestPostDetails(postId));
   }, [postId, dispatch]);
 
   return (
