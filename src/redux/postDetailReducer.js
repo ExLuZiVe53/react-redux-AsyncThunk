@@ -31,7 +31,6 @@ const INITIAL_STATE = {
   postDetailsData: null,
   isLoading: false,
   error: null,
-  posts: [],
 };
 
 const postDetailsSlice = createSlice({

@@ -11,6 +11,7 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { postDetailsReducer } from './postDetailReducer';
+import { postsReducer } from './postsReducer';
 
 const postDetailsConfig = {
   key: 'postDetails',
@@ -22,9 +23,11 @@ const postDetailsConfig = {
 };
 
 // configureStore приймає об'єкт опцій
+// прикріпляємо ред'юсер до стору
 export const store = configureStore({
   reducer: {
     postDetails: persistReducer(postDetailsConfig, postDetailsReducer),
+    postsData: postsReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
