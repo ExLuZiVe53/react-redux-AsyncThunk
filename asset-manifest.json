@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/react-redux-AsyncThunk/static/css/main.4f044e39.css",
-    "main.js": "/react-redux-AsyncThunk/static/js/main.6e4a3768.js",
+    "main.css": "/react-redux-AsyncThunk/static/css/main.b6a07848.css",
+    "main.js": "/react-redux-AsyncThunk/static/js/main.6c6fb1af.js",
     "static/js/983.6e33c20e.chunk.js": "/react-redux-AsyncThunk/static/js/983.6e33c20e.chunk.js",
     "static/js/649.b9fc17e5.chunk.js": "/react-redux-AsyncThunk/static/js/649.b9fc17e5.chunk.js",
     "static/js/735.c4dc2447.chunk.js": "/react-redux-AsyncThunk/static/js/735.c4dc2447.chunk.js",
-    "static/js/630.2e2ed8b0.chunk.js": "/react-redux-AsyncThunk/static/js/630.2e2ed8b0.chunk.js",
+    "static/js/630.e8bb53be.chunk.js": "/react-redux-AsyncThunk/static/js/630.e8bb53be.chunk.js",
     "static/js/149.1049444b.chunk.js": "/react-redux-AsyncThunk/static/js/149.1049444b.chunk.js",
     "index.html": "/react-redux-AsyncThunk/index.html",
     "static/media/search.svg": "/react-redux-AsyncThunk/static/media/search.93bb8714c3dcf7b8cd020ca8152fde64.svg",
-    "main.4f044e39.css.map": "/react-redux-AsyncThunk/static/css/main.4f044e39.css.map",
-    "main.6e4a3768.js.map": "/react-redux-AsyncThunk/static/js/main.6e4a3768.js.map",
+    "main.b6a07848.css.map": "/react-redux-AsyncThunk/static/css/main.b6a07848.css.map",
+    "main.6c6fb1af.js.map": "/react-redux-AsyncThunk/static/js/main.6c6fb1af.js.map",
     "983.6e33c20e.chunk.js.map": "/react-redux-AsyncThunk/static/js/983.6e33c20e.chunk.js.map",
     "649.b9fc17e5.chunk.js.map": "/react-redux-AsyncThunk/static/js/649.b9fc17e5.chunk.js.map",
     "735.c4dc2447.chunk.js.map": "/react-redux-AsyncThunk/static/js/735.c4dc2447.chunk.js.map",
-    "630.2e2ed8b0.chunk.js.map": "/react-redux-AsyncThunk/static/js/630.2e2ed8b0.chunk.js.map",
+    "630.e8bb53be.chunk.js.map": "/react-redux-AsyncThunk/static/js/630.e8bb53be.chunk.js.map",
     "149.1049444b.chunk.js.map": "/react-redux-AsyncThunk/static/js/149.1049444b.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.4f044e39.css",
-    "static/js/main.6e4a3768.js"
+    "static/css/main.b6a07848.css",
+    "static/js/main.6c6fb1af.js"
   ]
 }
