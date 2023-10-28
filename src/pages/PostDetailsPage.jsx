@@ -13,6 +13,7 @@ import ErrorMessage from 'components/ErrorMessage';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { requestPostDetails } from 'redux/postDetailReducer';
+import { toast } from 'react-toastify';
 
 const PostCommentsPage = lazy(() => import('pages/PostCommentsPage'));
 
@@ -34,7 +35,20 @@ const PostDetailsPage = () => {
     // коли у нас не прийде id поста, ми його просто відхиляємо, виходом з функції
     if (!postId) return;
     // thunk можна діспатчити, і дані які будуть у неї передані, прийдуть першим аргументои у async
-    dispatch(requestPostDetails(postId));
+    dispatch(requestPostDetails(postId))
+      .unwrap()
+      .then(() => {
+        toast.success('Hi! Post details was success fetched', {
+          position: 'top-center',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'dark',
+        });
+      });
   }, [postId, dispatch]);
 
   return (
